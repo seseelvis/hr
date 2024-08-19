@@ -1,27 +1,13 @@
 import flet as ft
 
-class State:
-    counter = 0
-
 def main(page: ft.Page):
-    state = State()
-
-    def add_click(e):
-        state.counter += 1
-        counter.value = str(state.counter)
-        counter.update()
-
-    page.floating_action_button = ft.FloatingActionButton(
-        icon=ft.icons.ADD, on_click=add_click
+    wv = ft.WebView(
+        "https://https://bubet.bi/",
+        expand=True,
+        on_page_started=lambda _: print("Page started"),
+        on_page_ended=lambda _: print("Page ended"),
+        on_web_resource_error=lambda e: print("Page error:", e.data),
     )
-    page.add(
-        ft.SafeArea(
-            ft.Container(
-                counter := ft.Text("0", size=50),
-                alignment=ft.alignment.center,
-            ),
-            expand=False,
-        )
-    )
+    page.add(wv)
 
 ft.app(main)
